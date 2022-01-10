@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18708AE47A4C11FBF78F8F14 /* Pods_FindFacilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB48B936BA08F9F8D31FE3C6 /* Pods_FindFacilities.framework */; };
+		C90596E7278C03980032E3D5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90596E6278C03980032E3D5 /* Category.swift */; };
+		C90596E9278C0DE20032E3D5 /* LocationMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90596E8278C0DE20032E3D5 /* LocationMapModel.swift */; };
+		C90596EB278C6A8B0032E3D5 /* DetailListCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90596EA278C6A8B0032E3D5 /* DetailListCellData.swift */; };
 		C9B9996B277C32360084CFF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9996A277C32360084CFF6 /* AppDelegate.swift */; };
 		C9B9996D277C32360084CFF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B9996C277C32360084CFF6 /* SceneDelegate.swift */; };
 		C9B99974277C32370084CFF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B99973277C32370084CFF6 /* Assets.xcassets */; };
@@ -51,6 +55,13 @@
 		C9B999F5277CD3E30084CFF6 /* LocalAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B999F4277CD3E30084CFF6 /* LocalAPI.swift */; };
 		C9B999F8277CD4760084CFF6 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B999F7277CD4760084CFF6 /* LocationData.swift */; };
 		C9B999FB277CD9210084CFF6 /* LocalNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B999FA277CD9210084CFF6 /* LocalNetwork.swift */; };
+		C9B999FD277CE3040084CFF6 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B999FC277CE3040084CFF6 /* LocationMapViewModel.swift */; };
+		C9B999FF277CE4B70084CFF6 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B999FE277CE4B70084CFF6 /* DetailTableViewCell.swift */; };
+		C9B99A00277CE53C0084CFF6 /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B999C0277C37A30084CFF6 /* DaumMap.framework */; };
+		C9B99A03277CE5630084CFF6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B999E4277CCEC10084CFF6 /* libc++.tbd */; };
+		C9B99A04277CE5680084CFF6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B999E6277CCED00084CFF6 /* libsqlite3.tbd */; };
+		C9B99A05277CE56F0084CFF6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B999E2277CCEAD0084CFF6 /* libxml2.tbd */; };
+		C9B99A09277D71050084CFF6 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B99A08277D71050084CFF6 /* CategoryCollectionViewCell.swift */; };
 		E0CF072091FFF4996A9ACFB2 /* Pods_FindFacilitiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 709057433293FA3F761B00B0 /* Pods_FindFacilitiesTests.framework */; };
 		E12C1178184C4514E4F67F61 /* Pods_FindFacilities_FindFacilitiesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D857A9CE6FFBCC14A97DE944 /* Pods_FindFacilities_FindFacilitiesUITests.framework */; };
 /* End PBXBuildFile section */
@@ -72,12 +83,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C9B99A02277CE53C0084CFF6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2076CFAC04C92EB3FC11E093 /* Pods-FindFacilitiesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindFacilitiesTests.release.xcconfig"; path = "Target Support Files/Pods-FindFacilitiesTests/Pods-FindFacilitiesTests.release.xcconfig"; sourceTree = "<group>"; };
 		56C4C4138005E5BFAD46AE49 /* Pods-FindFacilities.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindFacilities.debug.xcconfig"; path = "Target Support Files/Pods-FindFacilities/Pods-FindFacilities.debug.xcconfig"; sourceTree = "<group>"; };
 		6829FFAA9980C4EC1FEFE88C /* Pods-FindFacilities-FindFacilitiesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindFacilities-FindFacilitiesUITests.release.xcconfig"; path = "Target Support Files/Pods-FindFacilities-FindFacilitiesUITests/Pods-FindFacilities-FindFacilitiesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		709057433293FA3F761B00B0 /* Pods_FindFacilitiesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindFacilitiesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE81531E3115F1B175800B60 /* Pods-FindFacilitiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindFacilitiesTests.debug.xcconfig"; path = "Target Support Files/Pods-FindFacilitiesTests/Pods-FindFacilitiesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C90596E6278C03980032E3D5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		C90596E8278C0DE20032E3D5 /* LocationMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapModel.swift; sourceTree = "<group>"; };
+		C90596EA278C6A8B0032E3D5 /* DetailListCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListCellData.swift; sourceTree = "<group>"; };
 		C9B99967277C32360084CFF6 /* FindFacilities.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindFacilities.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B9996A277C32360084CFF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9B9996C277C32360084CFF6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +165,9 @@
 		C9B999F4277CD3E30084CFF6 /* LocalAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAPI.swift; sourceTree = "<group>"; };
 		C9B999F7277CD4760084CFF6 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		C9B999FA277CD9210084CFF6 /* LocalNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetwork.swift; sourceTree = "<group>"; };
+		C9B999FC277CE3040084CFF6 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
+		C9B999FE277CE4B70084CFF6 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		C9B99A08277D71050084CFF6 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D857A9CE6FFBCC14A97DE944 /* Pods_FindFacilities_FindFacilitiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindFacilities_FindFacilitiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF59E8D8DCFED4C1CC22184 /* Pods-FindFacilities-FindFacilitiesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindFacilities-FindFacilitiesUITests.debug.xcconfig"; path = "Target Support Files/Pods-FindFacilities-FindFacilitiesUITests/Pods-FindFacilities-FindFacilitiesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB48B936BA08F9F8D31FE3C6 /* Pods_FindFacilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindFacilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,10 +179,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B99A03277CE5630084CFF6 /* libc++.tbd in Frameworks */,
+				C9B99A04277CE5680084CFF6 /* libsqlite3.tbd in Frameworks */,
+				C9B99A05277CE56F0084CFF6 /* libxml2.tbd in Frameworks */,
+				C9B99A00277CE53C0084CFF6 /* DaumMap.framework in Frameworks */,
 				C9B999EA277CCEEF0084CFF6 /* CoreLocation.framework in Frameworks */,
 				C9B999EC277CCEF80084CFF6 /* SystemConfiguration.framework in Frameworks */,
 				C9B999E8277CCEE50084CFF6 /* QuartzCore.framework in Frameworks */,
 				C9B999EE277CCEFD0084CFF6 /* OpenGLES.framework in Frameworks */,
+				18708AE47A4C11FBF78F8F14 /* Pods_FindFacilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +270,7 @@
 				C9B999EF277CCF100084CFF6 /* BridgeHeader.h */,
 				C9B9996A277C32360084CFF6 /* AppDelegate.swift */,
 				C9B9996C277C32360084CFF6 /* SceneDelegate.swift */,
-				C9B999F0277CD16E0084CFF6 /* LocationMapViewController.swift */,
+				C9B99A06277D70D20084CFF6 /* Presentation */,
 				C9B999F2277CD3D70084CFF6 /* Constants.swift */,
 				C9B999F9277CD47C0084CFF6 /* Entities */,
 				C9B999F6277CD3E80084CFF6 /* Network */,
@@ -335,8 +370,30 @@
 			isa = PBXGroup;
 			children = (
 				C9B999F7277CD4760084CFF6 /* LocationData.swift */,
+				C90596E6278C03980032E3D5 /* Category.swift */,
+				C90596EA278C6A8B0032E3D5 /* DetailListCellData.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		C9B99A06277D70D20084CFF6 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C9B99A07277D70E70084CFF6 /* LocationMap */,
+				C9B999FE277CE4B70084CFF6 /* DetailTableViewCell.swift */,
+				C9B99A08277D71050084CFF6 /* CategoryCollectionViewCell.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C9B99A07277D70E70084CFF6 /* LocationMap */ = {
+			isa = PBXGroup;
+			children = (
+				C9B999F0277CD16E0084CFF6 /* LocationMapViewController.swift */,
+				C9B999FC277CE3040084CFF6 /* LocationMapViewModel.swift */,
+				C90596E8278C0DE20032E3D5 /* LocationMapModel.swift */,
+			);
+			path = LocationMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +408,7 @@
 				C9B99964277C32360084CFF6 /* Frameworks */,
 				C9B99965277C32360084CFF6 /* Resources */,
 				03E6599DF43D75341F377D7A /* [CP] Embed Pods Frameworks */,
+				C9B99A02277CE53C0084CFF6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -622,13 +680,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B999FF277CE4B70084CFF6 /* DetailTableViewCell.swift in Sources */,
+				C90596E9278C0DE20032E3D5 /* LocationMapModel.swift in Sources */,
+				C9B999FD277CE3040084CFF6 /* LocationMapViewModel.swift in Sources */,
 				C9B999F8277CD4760084CFF6 /* LocationData.swift in Sources */,
 				C9B9996B277C32360084CFF6 /* AppDelegate.swift in Sources */,
+				C90596EB278C6A8B0032E3D5 /* DetailListCellData.swift in Sources */,
 				C9B9996D277C32360084CFF6 /* SceneDelegate.swift in Sources */,
 				C9B999F1277CD16E0084CFF6 /* LocationMapViewController.swift in Sources */,
+				C9B99A09277D71050084CFF6 /* CategoryCollectionViewCell.swift in Sources */,
 				C9B999FB277CD9210084CFF6 /* LocalNetwork.swift in Sources */,
 				C9B999F5277CD3E30084CFF6 /* LocalAPI.swift in Sources */,
 				C9B999F3277CD3D70084CFF6 /* Constants.swift in Sources */,
+				C90596E7278C03980032E3D5 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,7 +749,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -749,7 +813,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;

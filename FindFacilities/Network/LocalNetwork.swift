@@ -24,10 +24,10 @@ class LocalNetwork {
         self.session = session
     }
     
-    func getLocation(categoryCode: String = "", mapPoint: MTMapPoint) -> Single<Result<LocationData, URLError>> {
+    func getLocation(category: Category, mapPoint: MTMapPoint) -> Single<Result<LocationData, URLError>> {
         
         guard let url = api.getLocation(
-            categoryCode: categoryCode,
+            categoryCode: category.categoryCode ?? "",
             mapPoint: mapPoint).url
         else {
             return .just(.failure(URLError(.badURL)))
