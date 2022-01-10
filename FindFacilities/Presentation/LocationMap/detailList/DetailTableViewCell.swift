@@ -12,6 +12,8 @@ import SnapKit
 
 class DetailTableViewCell: UITableViewCell {
     
+    static let identifier = "DetailTableViewCell"
+    
     let placeNameLabel = UILabel()
     let addressLabel = UILabel()
     let distanceLabel = UILabel()
@@ -31,6 +33,7 @@ class DetailTableViewCell: UITableViewCell {
     private func attribute() {
         backgroundColor = .white
         placeNameLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        placeNameLabel.textColor = .black
         
         addressLabel.font = .systemFont(ofSize: 14)
         addressLabel.textColor = .gray
@@ -59,5 +62,12 @@ class DetailTableViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(20)
         }
     }
-    
+}
+
+extension DetailTableViewCell {
+    func setData(_ data: DetailListCellData) {
+        placeNameLabel.text = data.placeName
+        addressLabel.text = data.address
+        distanceLabel.text = "\(data.distance)m"
+    }
 }

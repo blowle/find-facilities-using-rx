@@ -33,7 +33,7 @@ class DetailListBackgroundView: UIView {
     private func attribute() {
         backgroundColor = .white
         
-        statusLabel.text = "~~~~~"
+        statusLabel.text = "탐색된 정보가 없습니다."
         statusLabel.textAlignment = .center
     }
     

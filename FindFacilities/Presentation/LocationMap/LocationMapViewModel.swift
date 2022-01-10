@@ -16,17 +16,22 @@ struct LocationMapViewModel {
     let disposeBag = DisposeBag()
     let selectedCategory: Category = .전체
     
+    let detailBackgrouondViewModel = DetailListBackgroundViewModel()
+    
     // view model -> view
     let setMapCenter: Signal<MTMapPoint>
     let errorMessage: Signal<String>
+    let detailListCellData: Driver<[DetailListCellData]>
+    let scrollToSelectedLocation: Signal<Int>
     
     // view -> view model
     
     let currentLocation = PublishRelay<MTMapPoint>()
     let mapCenterPoint = PublishRelay<MTMapPoint>()
-//    let selectPOIItem = PublishRelay<MTMapPOIItem>()
-    let mapViewErorr = PublishRelay<String>()
+    let selectPOIItem = PublishRelay<MTMapPOIItem>()
+    let mapViewError = PublishRelay<String>()
     let currentLocationButtonTapped = PublishRelay<Void>()
+    let detailListItemSelected = PublishRelay<Int>()
     
     private let documentData = PublishSubject<[KLDocument]>()
     
@@ -64,11 +69,16 @@ struct LocationMapViewModel {
             .disposed(by: disposeBag)
         
         // MARK: 지도 중심점 설정
+        let selectedDetailListItem = detailListItemSelected
+            .withLatestFrom(documentData) { $1[$0] }
+            .map(model.documentToMTMapPoint)
+        
         let moveToCurrentLocation = currentLocationButtonTapped
             .withLatestFrom(currentLocation)
         
         let currentMapCenter = Observable
             .merge(
+                selectedDetailListItem,
                 currentLocation.take(1),
                 moveToCurrentLocation
             )
@@ -78,13 +88,24 @@ struct LocationMapViewModel {
         
         errorMessage = Observable
             .merge(
-                mapViewErorr.asObservable(),
+                mapViewError.asObservable(),
                 locationDataErrorMessage
             )
-            .asSignal(onErrorSignalWith: .empty())
+            .asSignal(onErrorJustReturn: "잠시 후 다시 시도해주세요.")
         
         
+        detailListCellData = documentData
+            .map(model.documentsToCellData)
+            .asDriver(onErrorDriveWith: .empty())
         
+        documentData
+            .map { !$0.isEmpty }
+            .bind(to: detailBackgrouondViewModel.shouldHideStatusLabel)
+            .disposed(by: disposeBag)
+        
+        scrollToSelectedLocation = selectPOIItem
+            .map { $0.tag }
+            .asSignal(onErrorJustReturn: 0)
     }
     
 }

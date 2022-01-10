@@ -17,7 +17,6 @@ struct LocationMapModel {
     }
     
     func getLocation(by mapPoint: MTMapPoint) -> Single<Result<LocationData, URLError>> {
-        let localNetwork = LocalNetwork()
         return localNetwork.getLocation(category: .전체, mapPoint: mapPoint)
     }
     
@@ -31,7 +30,6 @@ struct LocationMapModel {
     }
     
     func documentToMTMapPoint(_ document: KLDocument) -> MTMapPoint {
-        let point = MTMapPoint()
         let mtMapPointGeo = MTMapPointGeo(latitude: Double(document.y) ?? .zero, longitude: Double(document.x) ?? .zero)
         return MTMapPoint(geoCoord: mtMapPointGeo)
         

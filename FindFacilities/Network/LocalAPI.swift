@@ -21,7 +21,8 @@ struct LocalAPI {
         components.path = LocalAPI.path
         
         components.queryItems = [
-            URLQueryItem(name: "category_group_code", value: "\(categoryCode)"),
+            URLQueryItem(name: "category_group_code", value: "CS2"),
+//            URLQueryItem(name: "category_group_code", value: "\(categoryCode)"),
             URLQueryItem(name: "x", value: "\(mapPoint.mapPointGeo().longitude)"),
             URLQueryItem(name: "y", value: "\(mapPoint.mapPointGeo().latitude)"),
             URLQueryItem(name: "radius", value: "500"),
