@@ -21,13 +21,27 @@ class LocationMapViewController: UIViewController {
     let currentLocationButton = UIButton()
     let detailList = UITableView()
     let detailListBackgroundView = DetailListBackgroundView()
-//    let categoryList = UICollectionView()
+    
+    private let categoryList: UICollectionView = {
+        let inset: CGFloat = 16.0
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .yellow.withAlphaComponent(0.5)
+        return collectionView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
         locationManager.delegate = self
+    
+        categoryList.delegate = self
+        categoryList.dataSource = self
+        
         
         bind(viewModel)
         attribute()
@@ -73,6 +87,9 @@ class LocationMapViewController: UIViewController {
         viewModel.scrollToSelectedLocation
             .emit(to: self.rx.showSelectedLocation)
             .disposed(by: disposeBag)
+        
+        
+        
     }
     
     private func attribute() {
@@ -96,7 +113,7 @@ class LocationMapViewController: UIViewController {
     
     
     private func layout() {
-        [mapView, currentLocationButton, detailList /*, categoryList */].forEach { view.addSubview($0) }
+        [mapView, currentLocationButton, detailList, categoryList].forEach { view.addSubview($0) }
         
         mapView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -111,25 +128,25 @@ class LocationMapViewController: UIViewController {
         
         detailList.snp.makeConstraints {
             $0.centerX.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-4)
-//            $0.bottom.equalTo(categoryList.snp.top).offset(-4)
+            $0.bottom.equalTo(categoryList.snp.top).offset(-4)
             $0.top.equalTo(mapView.snp.bottom)
         }
         
-//        categoryList.snp.makeConstraints {
-//            $0.centerX.leading.trailing.equalToSuperview()
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(-8)
-//            $0.top.equalTo(mapView.snp.bottom)
-//        }
+        categoryList.snp.makeConstraints {
+            $0.centerX.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(-8)
+            $0.top.equalTo(mapView.snp.bottom)
+            $0.height.equalTo(50)
+        }
     }
     
     private func registerCells() {
         
         // table view
-        detailList.register(DetailTableViewCell.self, forCellReuseIdentifier: "DetailTableViewCell")
+        detailList.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.identifier)
         
-        //collection view
-//        categoryList.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: : "CategoryCollectionViewCell")
+        // collection view
+        categoryList.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
     }
     
     
@@ -232,4 +249,35 @@ extension Reactive where Base: LocationMapViewController {
             base.mapView.addPOIItems(items)
         }
     }
+}
+
+
+extension LocationMapViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        Category.allCases.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.setData(Category.allCases[indexPath.row].title)
+        
+        return cell
+    }
+}
+
+extension LocationMapViewController: UICollectionViewDelegateFlowLayout {
+    
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            return 8
+        }
+
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 16
+        }
+
+        // cell 사이즈( 옆 라인을 고려하여 설정 )
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: 60, height: 40)
+        }
 }

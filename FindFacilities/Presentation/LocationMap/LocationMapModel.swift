@@ -17,7 +17,7 @@ struct LocationMapModel {
     }
     
     func getLocation(by mapPoint: MTMapPoint) -> Single<Result<LocationData, URLError>> {
-        return localNetwork.getLocation(category: .전체, mapPoint: mapPoint)
+        return localNetwork.getLocation(category: .카페, mapPoint: mapPoint)
     }
     
     func documentsToCellData(_ data: [KLDocument]) -> [DetailListCellData] {

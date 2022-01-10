@@ -8,7 +8,6 @@
 import Foundation
 
 enum Category: String, CaseIterable {
-    case 전체
     case 대형마트
     case 편의점
     case 어린이집 = "어린이집/유치원"
@@ -28,12 +27,15 @@ enum Category: String, CaseIterable {
     case 병원
     case 약국
     
+    var title: String {
+        return rawValue
+    }
+    
     var categoryCode: String? {
         Category.catetoryList[self.rawValue]
     }
     
     static let catetoryList = [
-        "전체": "",
         "대형마트": "MT1",
         "편의점": "CS2",
         "어린이집/유치원": "PS3",

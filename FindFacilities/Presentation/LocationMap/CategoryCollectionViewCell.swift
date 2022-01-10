@@ -12,6 +12,8 @@ import SnapKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     
+    static let identifier = "CategoryCollectionViewCell"
+    
     let titleLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -31,14 +33,18 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     private func attribute() {
-        titleLabel.font = .systemFont(ofSize: 12)
+        titleLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        titleLabel.textAlignment = .center
         titleLabel.backgroundColor = .white
         titleLabel.numberOfLines = 0
+        
+        contentView.layer.cornerRadius = 20
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.black.cgColor
     }
     
     private func layout() {
         contentView.addSubview(titleLabel)
-        
         titleLabel.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(4)
         }

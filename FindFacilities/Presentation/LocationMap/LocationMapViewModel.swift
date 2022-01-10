@@ -14,7 +14,7 @@ struct LocationMapViewModel {
     let localNetwork = LocalNetwork()
     
     let disposeBag = DisposeBag()
-    let selectedCategory: Category = .전체
+    let selectedCategory: Category = .학원
     
     let detailBackgrouondViewModel = DetailListBackgroundViewModel()
     
