@@ -14,7 +14,6 @@ struct LocationMapViewModel {
     let localNetwork = LocalNetwork()
     
     let disposeBag = DisposeBag()
-    let selectedCategory: Category = .학원
     
     let detailBackgrouondViewModel = DetailListBackgroundViewModel()
     
@@ -32,14 +31,26 @@ struct LocationMapViewModel {
     let mapViewError = PublishRelay<String>()
     let currentLocationButtonTapped = PublishRelay<Void>()
     let detailListItemSelected = PublishRelay<Int>()
+    let selectedCategory = PublishRelay<Category>()
     
     private let documentData = PublishSubject<[KLDocument]>()
+    private let category = BehaviorSubject<Category>(value: .편의점)
     
     init(_ model: LocationMapModel = LocationMapModel()) {
-        let locationDataResult = mapCenterPoint
-            .flatMapLatest(model.getLocation)
-            .share()
         
+        selectedCategory
+            .bind(to: category)
+            .disposed(by: disposeBag)
+        
+        let locationDataResult = Observable
+            .combineLatest(category,
+                           mapCenterPoint
+            ) { category, point in
+                model.getLocation(category: category, by: point)
+            }
+            .flatMap { $0 }
+            .share()
+
         let locationDataValue = locationDataResult
             .compactMap { data -> LocationData? in
                 guard case .success(let value) = data else {
@@ -106,6 +117,7 @@ struct LocationMapViewModel {
         scrollToSelectedLocation = selectPOIItem
             .map { $0.tag }
             .asSignal(onErrorJustReturn: 0)
+            
     }
     
 }

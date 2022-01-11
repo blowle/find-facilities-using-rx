@@ -22,14 +22,15 @@ class LocationMapViewController: UIViewController {
     let detailList = UITableView()
     let detailListBackgroundView = DetailListBackgroundView()
     
-    private let categoryList: UICollectionView = {
+    private lazy var categoryList: UICollectionView = {
         let inset: CGFloat = 16.0
-        
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         layout.scrollDirection = .horizontal
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .yellow.withAlphaComponent(0.5)
+        
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
@@ -42,10 +43,15 @@ class LocationMapViewController: UIViewController {
         categoryList.delegate = self
         categoryList.dataSource = self
         
-        
         bind(viewModel)
         attribute()
         layout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        categoryList.selectItem(at: IndexPath(row: 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
     private func bind(_ viewModel: LocationMapViewModel) {
@@ -88,13 +94,17 @@ class LocationMapViewController: UIViewController {
             .emit(to: self.rx.showSelectedLocation)
             .disposed(by: disposeBag)
         
-        
-        
+        categoryList.rx.itemSelected
+            .map { Category.allCases[$0.row] }
+            .bind(to: viewModel.selectedCategory)
+            .disposed(by: disposeBag)
     }
     
     private func attribute() {
         title = "내 주변 편의시설 찾기"
         view.backgroundColor = .white
+        
+        registerCells()
         
         // mapview
         mapView.currentLocationTrackingMode = .onWithoutHeadingWithoutMapMoving
@@ -103,12 +113,11 @@ class LocationMapViewController: UIViewController {
         currentLocationButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
         currentLocationButton.backgroundColor = .white
         currentLocationButton.layer.cornerRadius = 20
-        
-        registerCells()
+             
         detailList.separatorStyle = .none
         detailList.backgroundView = detailListBackgroundView
-        
-//        categoryList.backgroundColor = .red
+
+        categoryList.backgroundColor = .none
     }
     
     
@@ -128,15 +137,14 @@ class LocationMapViewController: UIViewController {
         
         detailList.snp.makeConstraints {
             $0.centerX.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(categoryList.snp.top).offset(-4)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(mapView.snp.bottom)
         }
         
         categoryList.snp.makeConstraints {
-            $0.centerX.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(-8)
-            $0.top.equalTo(mapView.snp.bottom)
-            $0.height.equalTo(50)
+            $0.leading.trailing.equalTo(mapView)
+            $0.top.equalTo(mapView).offset(8)
+            $0.height.equalTo(40)
         }
     }
     

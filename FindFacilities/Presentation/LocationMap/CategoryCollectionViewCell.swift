@@ -16,6 +16,12 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     let titleLabel = UILabel()
     
+    override var isSelected: Bool {
+        didSet {
+            self.contentView.backgroundColor = isSelected ? UIColor.yellow : .white
+        }
+      }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -27,7 +33,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func setData(_ title: String) {
         titleLabel.text = title
     }
@@ -35,12 +40,13 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     private func attribute() {
         titleLabel.font = .systemFont(ofSize: 12, weight: .semibold)
         titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = .white
+        titleLabel.backgroundColor = .white.withAlphaComponent(0)
         titleLabel.numberOfLines = 0
         
         contentView.layer.cornerRadius = 20
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.backgroundColor = .white
+        contentView.layer.borderColor = UIColor.yellow.cgColor
     }
     
     private func layout() {
